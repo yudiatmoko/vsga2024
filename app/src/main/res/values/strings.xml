@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My VSGA Project 2</string>
+    <string name="insert_your_name_text">Masukkan Nama Anda:</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="show_text">Tampilkan</string>
+    <string name="your_name_text">"Nama Anda: %1$s"</string>
 </resources>
