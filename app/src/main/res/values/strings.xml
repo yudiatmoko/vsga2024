@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">My VSGA Project 2</string>
+    <string name="insert_two_numbers_text">Masukkan Dua Angka</string>
+    <string name="insert_first_number_text">Masukkan angka pertama</string>
+    <string name="insert_second_number_text">Masukkan angka kedua</string>
+    <string name="add_symbol">+</string>
+    <string name="subtraction_symbol">-</string>
+    <string name="multiplication_symbol">x</string>
+    <string name="division_symbol">/</string>
+    <string name="result_title">Hasil:</string>
+    <string name="clear_text">Bersihkan</string>
+    <string name="undefined">Tidak tedefinisi</string>
+    <string name="fill_form_required">Silakan isi angka</string>
+    <string name="zero">0</string>
 </resources>
