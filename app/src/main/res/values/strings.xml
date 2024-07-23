@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My VSGA Project 2</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="clicked">Di-click: %1$s</string>
 </resources>
