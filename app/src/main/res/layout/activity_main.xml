@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="12dp"
     android:orientation="vertical"
+    android:padding="?android:attr/listPreferredItemPaddingStart"
     tools:context=".MainActivity">
 
     <TextView
@@ -23,23 +22,37 @@
         android:id="@+id/et_first_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:layout_marginVertical="8dp"
         android:ellipsize="end"
         android:ems="10"
         android:fontFamily="@font/inter_medium"
+        android:gravity="center"
         android:hint="@string/insert_first_number_text"
         android:inputType="number"
         android:minHeight="48dp"
         android:textSize="16sp" />
 
+    <TextView
+        android:id="@+id/tv_operators"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/inter_bold"
+        android:gravity="center"
+        android:textSize="32sp"
+        tools:text="" />
+
     <EditText
         android:id="@+id/et_second_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:layout_marginVertical="8dp"
         android:ellipsize="end"
         android:ems="10"
         android:fontFamily="@font/inter_medium"
+        android:gravity="center"
         android:hint="@string/insert_second_number_text"
         android:inputType="number"
         android:minHeight="48dp"
@@ -117,9 +130,9 @@
 
     <Button
         android:id="@+id/btn_clear"
-        android:onClick="clearText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="clearText"
         android:text="@string/clear_text" />
 
 </LinearLayout>

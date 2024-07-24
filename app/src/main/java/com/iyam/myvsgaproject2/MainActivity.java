@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     EditText firstNumForm;
     EditText secondNumForm;
     TextView result;
+    TextView operators;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         firstNumForm = binding.etFirstNumber;
         secondNumForm = binding.etSecondNumber;
         result = binding.tvResult;
+        operators = binding.tvOperators;
         setOnClickListener();
     }
 
@@ -58,14 +60,17 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     operationResult = firstNumber + secondNumber;
                     result.setText(String.valueOf(operationResult));
+                    operators.setText(binding.btnAddition.getText());
                     break;
                 case 2:
                     operationResult = firstNumber - secondNumber;
                     result.setText(String.valueOf(operationResult));
+                    operators.setText(binding.btnSubtraction.getText());
                     break;
                 case 3:
                     operationResult = firstNumber * secondNumber;
                     result.setText(String.valueOf(operationResult));
+                    operators.setText(binding.btnMultiplication.getText());
                     break;
                 case 4:
                     if (secondNumber != 0) {
@@ -75,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         result.setText(R.string.undefined);
                     }
+                    operators.setText(binding.btnDivision.getText());
                     break;
             }
         } else {
@@ -85,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     public void clearText(View view) {
         firstNumForm.getText().clear();
         secondNumForm.getText().clear();
-        result.setText(R.string.zero);
+        result.setText(R.string.empty);
+        operators.setText(R.string.empty);
     }
 }
