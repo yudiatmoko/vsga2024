@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">My VSGA Project 2</string>
+    <string name="app_name">Countries</string>
+    <string name="clicked">Clicked: %1$s</string>
 </resources>
