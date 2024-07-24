@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">My VSGA Project 2</string>
+    <string name="create_file_text">Create File</string>
+    <string name="read_file_text">Read File</string>
+    <string name="update_file_text">Update File</string>
+    <string name="delete_file_text">Delete File</string>
+    <string name="this_is_data_from_createfile">This is data from createFile</string>
+    <string name="FILENAME">data.txt</string>
+    <string name="this_is_data_from_updatefile">This is data from updateFile</string>
 </resources>
