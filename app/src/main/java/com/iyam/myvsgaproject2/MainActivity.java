@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
     private void setOnClickListener() {
         countryList.setOnItemClickListener((parent, view, position, id) ->
                 Toast.makeText(MainActivity.this, getString(R.string.clicked, name[position]),
-                        Toast.LENGTH_LONG).show());
+                Toast.LENGTH_LONG).show()
+        );
     }
 
     private void setListView() {
