@@ -1,24 +1,33 @@
+/*
+ *    Hi, Code Enthusiast!
+ *    https://github.com/yudiatmoko
+ */
+
 package com.iyam.myvsgaproject2;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import com.iyam.myvsgaproject2.databinding.ActivityMainBinding;
+
+import com.iyam.myvsgaproject2.databinding.ActivityInternalStorageBinding;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ActivityMainBinding binding;
+public class InternalStorageActivity extends AppCompatActivity implements View.OnClickListener {
+
+    ActivityInternalStorageBinding binding;
     TextView textData;
     Button btnCreate, btnUpdate, btnRead, btnDelete;
     public static final String FILENAME = "data.txt";
@@ -26,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityInternalStorageBinding.inflate(getLayoutInflater());
         btnCreate = binding.btnCreate;
         btnUpdate = binding.btnUpdate;
         btnRead = binding.btnRead;

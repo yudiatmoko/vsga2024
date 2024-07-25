@@ -7,4 +7,8 @@
     <string name="this_is_data_from_createfile">This is data from createFile</string>
     <string name="FILENAME">data.txt</string>
     <string name="this_is_data_from_updatefile">This is data from updateFile</string>
+    <string name="internal_storage_text">Internal Storage</string>
+    <string name="external_storage_text">External Storage</string>
+    <string name="persistence_practice_text">Persistence Practice</string>
+    <string name="external_storage_not_found">External Storage Not Found</string>
 </resources>
