@@ -11,5 +11,4 @@ Data Persitence Example
 
 ## Demo
 
-![App Demo](https://raw.githubusercontent.com/yudiatmoko/vsga2024/08/08-data-persistence-example/screencast/video.webp
-)
+![App Demo](https://raw.githubusercontent.com/yudiatmoko/vsga2024/08/08-data-persistence-example/screencasts/video.webm)
