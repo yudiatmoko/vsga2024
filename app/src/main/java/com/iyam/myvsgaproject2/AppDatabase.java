@@ -27,8 +27,6 @@ public class AppDatabase extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-//    final String CREATE_TABLE_STUDENT = "CREATE TABLE " + TABLE_STUDENTS + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTO INCREMENT," + KEY_FIRSTNAME + " TEXT);";
-
     final String CREATE_TABLE_STUDENT = "CREATE TABLE " + TABLE_STUDENTS + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_FIRSTNAME + " TEXT)";
 
     final String DROP_TABLE_STUDENT = "DROP TABLE IF EXISTS '" + TABLE_STUDENTS + "'";
