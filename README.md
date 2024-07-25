@@ -3,13 +3,11 @@
 
 Data Persitence Example
 
-
-
 ## Screenshots
 
 ![App Screenshot](https://raw.githubusercontent.com/yudiatmoko/vsga2024/08/08-data-persistence-example/screenshots/img.png)
 
 ## Demo
 
-![App Demo](https://github.com/yudiatmoko/vsga2024/raw/08/08-data-persistence-example/screencasts/video.webm)
+[demo.webm](https://github.com/user-attachments/assets/daef391a-5432-4884-8321-62dd9001f841)
 
