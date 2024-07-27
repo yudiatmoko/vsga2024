@@ -14,7 +14,7 @@
     <string name="create_new_text">Buat Catatan Baru</string>
     <string name="date_format">dd MMM yyy HH:mm</string>
     <string name="delete_file_title">Hapus Catatan</string>
-    <string name="are_you_sure_to_delete_this_file">"Apakah anda yakin ingin menghapus "</string>
+    <string name="are_you_sure_to_delete_this_file">"Apakah anda yakin ingin menghapus \"%1$s\""</string>
     <string name="yes_text">Ya</string>
     <string name="cancel_text">Batal</string>
 </resources>

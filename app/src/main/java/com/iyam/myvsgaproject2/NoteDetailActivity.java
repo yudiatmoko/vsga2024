@@ -84,10 +84,12 @@ public class NoteDetailActivity extends AppCompatActivity {
             parent.mkdir();
         }
 
-        if (isUpdate || (!file.exists() && parent.exists())) {
+        if (isUpdate || (!file.exists() && parent.exists() && !fileName.isEmpty())) {
             saveFile(file, data);
         } else if (file.exists()) {
             Toast.makeText(this, R.string.file_name_already_exist_text, Toast.LENGTH_SHORT).show();
+        } else if (fileName.isEmpty()) {
+            Toast.makeText(this, R.string.enter_file_name_text, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -95,12 +97,12 @@ public class NoteDetailActivity extends AppCompatActivity {
         FileOutputStream fos;
         try {
             file.createNewFile();
-            fos = new FileOutputStream(file, true);
+            fos = new FileOutputStream(file, false);
             fos.write(data.getBytes());
             fos.flush();
             fos.close();
             Toast.makeText(this, R.string.note_saved_text, Toast.LENGTH_SHORT).show();
-            onBackPressed();
+            finish();
         } catch (IOException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }

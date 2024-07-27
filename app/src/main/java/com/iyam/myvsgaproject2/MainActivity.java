@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     private void showDeleteDialog(String fileName) {
         AlertDialog.Builder deleteDialog = new AlertDialog.Builder(this);
         deleteDialog.setTitle(R.string.delete_file_title);
-        deleteDialog.setMessage(getString(R.string.are_you_sure_to_delete_this_file) + fileName);
+        deleteDialog.setMessage(getString(R.string.are_you_sure_to_delete_this_file, fileName));
         deleteDialog.setIcon(R.drawable.ic_delete);
         deleteDialog.setPositiveButton(R.string.yes_text, (dialogInterface, i) -> {
             deleteFileFunction(fileName);
