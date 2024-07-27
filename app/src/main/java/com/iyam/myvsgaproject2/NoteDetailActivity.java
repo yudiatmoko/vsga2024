@@ -53,8 +53,8 @@ public class NoteDetailActivity extends AppCompatActivity {
     }
 
     private void setButtonVisibilty() {
-        binding.btnUpdate.setVisibility(View.GONE);
-        binding.btnSave.setVisibility(View.VISIBLE);
+        btnUpdate.setVisibility(View.GONE);
+        btnSave.setVisibility(View.VISIBLE);
     }
 
     private void checkUpdate() {
@@ -63,8 +63,8 @@ public class NoteDetailActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(R.string.ubah_catatan_text);
             etFileName.setText(extras.getString(MainActivity.CompanionObject.FILENAME));
             readFile();
-            binding.btnSave.setVisibility(View.GONE);
-            binding.btnUpdate.setVisibility(View.VISIBLE);
+            btnSave.setVisibility(View.GONE);
+            btnUpdate.setVisibility(View.VISIBLE);
         }
     }
 
