@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">My VSGA Project 2</string>
+    <string name="app_name">Catatan Harian</string>
+    <string name="dir_name">/note_app</string>
+    <string name="add_notes_text">Tambah Catatan</string>
+    <string name="file_name_text">Nama File</string>
+    <string name="enter_file_name_text">Isi nama file</string>
+    <string name="note_content_text">Isi Catatan</string>
+    <string name="enter_note_content_here">Isi catatan di sini</string>
+    <string name="save_text">Simpan</string>
+    <string name="ubah_catatan_text">Ubah Catatan</string>
+    <string name="file_name_already_exist_text">Nama file sudah digunakan</string>
+    <string name="save_changes_text">Simpan Perubahan</string>
+    <string name="note_saved_text">Catatan berhasil disimpan</string>
+    <string name="create_new_text">Buat Catatan Baru</string>
+    <string name="date_format">dd MMM yyy HH:mm</string>
+    <string name="delete_file_title">Hapus Catatan</string>
+    <string name="are_you_sure_to_delete_this_file">"Apakah anda yakin ingin menghapus "</string>
+    <string name="yes_text">Ya</string>
+    <string name="cancel_text">Batal</string>
 </resources>
