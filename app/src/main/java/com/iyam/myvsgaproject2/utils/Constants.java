@@ -1,0 +1,1 @@
+/* *    Hi, Code Enthusiast! *    https://github.com/yudiatmoko *//* *    Hi, Code Enthusiast! *    https://github.com/yudiatmoko */package com.iyam.myvsgaproject2.utils;public class Constants {    public static final String NOTE_TITLE = "NOTE_TITLE";    public static final String NOTE_CONTENT = "NOTE_CONTENT";}

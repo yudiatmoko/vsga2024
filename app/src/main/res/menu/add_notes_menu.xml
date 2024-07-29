@@ -8,6 +8,6 @@
     <item
         android:id="@+id/add_notes_menu"
         android:icon="@drawable/ic_add"
-        android:title="@string/add_notes_text"
+        android:title="@string/action_add_note"
         app:showAsAction="ifRoom" />
 </menu>

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_margin="12dp"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ui.home.MainActivity">
 
     <ListView
         android:id="@+id/lv_notes"
