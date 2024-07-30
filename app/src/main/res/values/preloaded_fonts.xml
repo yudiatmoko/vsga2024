@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~    Hi, Code Enthusiast!
+  ~    https://github.com/yudiatmoko
+  -->
+
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/inter_semibold</item>
