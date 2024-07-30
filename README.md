@@ -1,8 +1,10 @@
+
 # VSGA 2024
 
-SQLite Practice CRUD
+Room CRUD Example
 
-## Screenshots
+## Demo
 
-![App Screenshot](https://raw.githubusercontent.com/yudiatmoko/vsga2024/09/09-sqlite-practice/screenshots/img.png)
+[Screencast from 2024-07-30 19-39-33.webm](https://github.com/user-attachments/assets/00b95926-a511-4532-8a43-398ec40009d8)
+
 
