@@ -5,4 +5,7 @@
     <string name="address_input">Masukkan alamat</string>
     <string name="action_submit">Submit</string>
     <string name="action_cancel">Cancel</string>
+    <string name="add_new_data">Buat Data Baru</string>
+    <string name="message_confirm_delete">Apakah anda yakin ingin menghapus kontak ini?</string>
+    <string name="action_yes">Ya</string>
 </resources>
