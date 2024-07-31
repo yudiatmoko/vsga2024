@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">My VSGA Project 2</string>
+    <string name="app_name">SQLite App</string>
+    <string name="add_new_contact">Add new contact</string>
+    <string name="name_input">Masukkan nama</string>
+    <string name="address_input">Masukkan alamat</string>
+    <string name="action_submit">Submit</string>
+    <string name="action_cancel">Cancel</string>
 </resources>
