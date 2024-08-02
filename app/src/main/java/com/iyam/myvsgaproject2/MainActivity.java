@@ -3,7 +3,6 @@ package com.iyam.myvsgaproject2;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -11,21 +10,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.iyam.myvsgaproject2.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private TextView tvLocation;
+    private LocationRequest locationRequest;
+    private LocationCallback locationCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         checkPermission();
+        updateLocation();
     }
 
     private void checkPermission() {
@@ -70,37 +69,75 @@ public class MainActivity extends AppCompatActivity {
     private void getLastLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-        } else{
-            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
-                if (location != null) {
-                    tvLocation.setText(location.getLatitude() + ", " + location.getLongitude());
-                } else {
-                    tvLocation.setText(R.string.location_cannot_found);
-                }
-            });
+            return;
         }
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
+            if (location != null) {
+                tvLocation.setText(location.getLatitude() + ", " + location.getLongitude());
+            } else {
+                tvLocation.setText(R.string.location_cannot_found);
+            }
+        });
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 101){
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == 101) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastLocation();
+                startLocationUpdates();
                 Toast.makeText(this, R.string.location_permission_granted, Toast.LENGTH_SHORT).show();
-            } else if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+            } else if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
                 Toast.makeText(this, R.string.permission_location_denied, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                Uri uri = Uri.fromParts(getString(R.string.package_scheme), getPackageName(), null);
                 intent.setData(uri);
                 startActivity(intent);
             }
         }
     }
 
+    private void updateLocation() {
+        locationRequest = LocationRequest.create()
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(10000) // 10 seconds
+                .setFastestInterval(5000); // 5 seconds
+
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    return;
+                }
+                for (android.location.Location location : locationResult.getLocations()) {
+                    tvLocation.setText(location.getLatitude() + ", " + location.getLongitude());
+                }
+            }
+        };
+    }
+
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
+    }
+
+    private void stopLocationUpdate(){
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        getLastLocation();
+        startLocationUpdates();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopLocationUpdate();
     }
 }

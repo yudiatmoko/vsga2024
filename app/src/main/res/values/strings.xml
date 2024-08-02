@@ -3,4 +3,5 @@
     <string name="location_cannot_found">Lokasi tidak terdeteksi</string>
     <string name="location_permission_granted">Izin lokasi sudah diberikan</string>
     <string name="permission_location_denied">Izin lokasi tidak diberikan</string>
+    <string name="package_scheme">package</string>
 </resources>
