@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="12dp"
+    android:orientation="vertical"
+    tools:context=".ui.register.RegisterActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="@string/account_register"
+        android:textColor="@color/Crayola"
+        android:textColorLink="@color/Crayola"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <include
+        android:id="@+id/form_register"
+        layout="@layout/layout_common_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/Crayola"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="@string/register"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_navigate_to_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="@string/already_have_account"
+        android:textAlignment="center"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

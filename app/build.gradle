@@ -40,4 +40,15 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+
+    //splash screen
+    implementation libs.core.splashscreen
+
+    //room
+    implementation libs.room.runtime
+    annotationProcessor libs.room.compiler
+
+    //lifecycle
+    implementation libs.lifecycle.extensions
+    annotationProcessor libs.lifecycle.compiler
 }
