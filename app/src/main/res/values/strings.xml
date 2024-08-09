@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My VSGA Project 2</string>
+    <string name="light_sensor">Light sensor: \n%1$.2f</string>
 </resources>
