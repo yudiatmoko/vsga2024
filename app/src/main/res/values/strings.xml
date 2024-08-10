@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My VSGA Project 2</string>
+    <string name="app_name">CatatanKu</string>
     <string name="dev_name">Ilham Yudiatmoko</string>
     <string name="develop_by">Develop by</string>
     <string name="name">Nama</string>
@@ -9,7 +9,7 @@
     <string name="confirm_password">Konfirmasi kata sandi</string>
     <string name="account_register">Daftar Akun</string>
     <string name="register">Daftar</string>
-    <string name="already_have_account">Sudah punya akun? Login</string>
+    <string name="already_have_account">Sudah punya akun? Masuk</string>
     <string name="account_login">Login Akun</string>
     <string name="login">Masuk</string>
     <string name="dont_have_account">Belum punya akun? Daftar</string>

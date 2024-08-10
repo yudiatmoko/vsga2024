@@ -34,6 +34,8 @@
         android:backgroundTint="@color/Crayola"
         android:fontFamily="@font/nunito_sans_bold"
         android:text="@string/register"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="16sp" />
 
     <TextView

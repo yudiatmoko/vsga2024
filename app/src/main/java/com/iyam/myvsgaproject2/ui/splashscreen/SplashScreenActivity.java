@@ -43,6 +43,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     private void navigateToMain() {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }, 2000);
     }
 }
