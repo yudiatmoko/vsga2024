@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.iyam.myvsgaproject2.data.preferences.Preferences;
 import com.iyam.myvsgaproject2.databinding.ActivitySplashScreenBinding;
 import com.iyam.myvsgaproject2.ui.login.LoginActivity;
 import com.iyam.myvsgaproject2.ui.main.MainActivity;
@@ -37,12 +38,28 @@ public class SplashScreenActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        navigateToMain();
+        getUserPreferences();
+    }
+
+    private void getUserPreferences() {
+        boolean isLoggedIn = Preferences.getLoggedInStatus(this);
+        if (isLoggedIn){
+            navigateToMain();
+        } else {
+            navigateToLogin();
+        }
+    }
+
+    private void navigateToLogin() {
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }, 2000);
     }
 
     private void navigateToMain() {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }, 2000);
     }

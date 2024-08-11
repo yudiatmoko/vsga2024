@@ -13,4 +13,10 @@
     <string name="account_login">Login Akun</string>
     <string name="login">Masuk</string>
     <string name="dont_have_account">Belum punya akun? Daftar</string>
+    <string name="database_name">catatanku_database</string>
+    <string name="username">Username</string>
+    <string name="all_fields_are_required">Semua data wajib diisi</string>
+    <string name="passwords_do_not_match">Kata sandi tidak sesuai</string>
+    <string name="account_not_found">Akun tidak ditemukan</string>
+    <string name="incorrect_password">Kata sandi salah</string>
 </resources>
