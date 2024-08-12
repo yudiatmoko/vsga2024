@@ -88,16 +88,17 @@ public class RegisterActivity extends AppCompatActivity {
         String username = Objects.requireNonNull(binding.formRegister.etUsername.getText()).toString().trim();
         String userPassword = Objects.requireNonNull(binding.formRegister.etPassword.getText()).toString().trim();
         if (isFormValid()) {
-            viewModel.getUserByUsername(username);
-            viewModel.getUser().observe(this, user -> {
-                if (user != null && user.getUsername().equalsIgnoreCase(username)) {
-                    Toast.makeText(RegisterActivity.this, "Username already taken", Toast.LENGTH_SHORT).show();
-                } else if (user == null){
-                    viewModel.insertUser(new User(name, userEmail, username, userPassword));
-                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                    Preferences.setLoggedInUser(this, username);
-                    Preferences.setLoggedInStatus(this, true);
-                    finish();
+            viewModel.isUsernameExist(username).observe(RegisterActivity.this, isExist -> {
+                if (isExist){
+                    binding.formRegister.tilUsername.setError(getString(R.string.username_already_exists));
+                } else {
+                    viewModel.register(new User(name, userEmail, username, userPassword)
+                    ).observe(RegisterActivity.this, isSuccess -> {
+                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                        Preferences.setLoggedInUser(getBaseContext(), username);
+                        Preferences.setLoggedInStatus(getBaseContext(), true);
+                        finish();
+                    });
                 }
             });
         }

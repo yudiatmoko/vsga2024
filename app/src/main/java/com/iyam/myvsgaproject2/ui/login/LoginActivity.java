@@ -12,11 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.iyam.myvsgaproject2.R;
 import com.iyam.myvsgaproject2.data.preferences.Preferences;
 import com.iyam.myvsgaproject2.databinding.ActivityLoginBinding;
+import com.iyam.myvsgaproject2.model.User;
 import com.iyam.myvsgaproject2.ui.main.MainActivity;
 import com.iyam.myvsgaproject2.ui.register.RegisterActivity;
 import com.iyam.myvsgaproject2.ui.viewmodel.UserViewModel;
@@ -53,18 +55,6 @@ private ActivityLoginBinding binding;
         });
         setOnClickListener();
         setForm();
-        observeResult();
-    }
-
-    private void observeResult() {
-        viewModel.getCurrentUser().observe(this, user1 -> {
-            if (user1 != null){
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
-            } else {
-                Toast.makeText(this, R.string.account_not_found, Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void setForm() {
@@ -97,9 +87,16 @@ private ActivityLoginBinding binding;
         String username = Objects.requireNonNull(binding.formRegister.etUsername.getText()).toString().trim();
         String userPassword = Objects.requireNonNull(binding.formRegister.etPassword.getText()).toString().trim();
         if (isFormValid()) {
-            viewModel.getUserByUsernamePassword(username, userPassword);
-            Preferences.setLoggedInUser(this, username);
-            Preferences.setLoggedInStatus(this, true);
+            viewModel.login(username, userPassword).observe(this, user -> {
+                if (user != null){
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
+                    Preferences.setLoggedInUser(getBaseContext(), user.getUsername());
+                    Preferences.setLoggedInStatus(getBaseContext(), true);
+                } else {
+                    Toast.makeText(this, R.string.account_not_found, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

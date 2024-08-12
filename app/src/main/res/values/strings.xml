@@ -19,4 +19,5 @@
     <string name="passwords_do_not_match">Kata sandi tidak sesuai</string>
     <string name="account_not_found">Akun tidak ditemukan</string>
     <string name="incorrect_password">Kata sandi salah</string>
+    <string name="username_already_exists">Username sudah digunakan</string>
 </resources>
