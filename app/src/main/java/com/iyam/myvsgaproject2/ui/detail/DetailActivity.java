@@ -20,6 +20,7 @@ import com.iyam.myvsgaproject2.model.Note;
 import com.iyam.myvsgaproject2.ui.viewmodel.NoteViewModel;
 import com.iyam.myvsgaproject2.utils.TextExtension;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class DetailActivity extends AppCompatActivity {
@@ -83,6 +84,7 @@ public class DetailActivity extends AppCompatActivity {
             Note note = (Note) getIntent().getSerializableExtra(TextExtension.NOTE);
             note.setNoteTitle(title);
             note.setNoteContent(content);
+            note.setDate(LocalDateTime.now());
             viewModel.updateNote(note).observe(DetailActivity.this, isSuccess -> {
                 if (isSuccess){
                     finish();
@@ -107,7 +109,8 @@ public class DetailActivity extends AppCompatActivity {
                     null,
                     getUsernamePref(),
                     title,
-                    content
+                    content,
+                    LocalDateTime.now()
             );
             viewModel.insertNote(note).observe(DetailActivity.this, isSuccess -> {
                 if (isSuccess){
