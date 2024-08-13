@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.iyam.myvsgaproject2.R;
@@ -19,6 +18,9 @@ import com.iyam.myvsgaproject2.data.preferences.Preferences;
 import com.iyam.myvsgaproject2.databinding.ActivityDetailBinding;
 import com.iyam.myvsgaproject2.model.Note;
 import com.iyam.myvsgaproject2.ui.viewmodel.NoteViewModel;
+import com.iyam.myvsgaproject2.utils.TextExtension;
+
+import java.util.Objects;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -41,7 +43,6 @@ public class DetailActivity extends AppCompatActivity {
         etContent = binding.etContent;
         viewModel = new ViewModelProvider(this).get(NoteViewModel.class);
 
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(binding.getRoot());
@@ -50,7 +51,20 @@ public class DetailActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        setContentForEdit();
         setOnClickListener();
+    }
+
+    private void setContentForEdit() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.edit_notes);
+            Note note = (Note) getIntent().getSerializableExtra("NOTE");
+            etTitle.setText(note.getNoteTitle());
+            etContent.setText(note.getNoteContent());
+            btnSave.setVisibility(View.GONE);
+            btnUpdate.setVisibility(View.VISIBLE);
+        }
     }
 
     private String getUsernamePref() {
@@ -59,12 +73,29 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setOnClickListener() {
         btnSave.setOnClickListener(view -> insertNote());
+        btnUpdate.setOnClickListener(view -> updateNote());
+    }
+
+    private void updateNote() {
+        String title = etTitle.getText().toString();
+        String content = etContent.getText().toString();
+        if (isFormValid()){
+            Note note = (Note) getIntent().getSerializableExtra(TextExtension.NOTE);
+            note.setNoteTitle(title);
+            note.setNoteContent(content);
+            viewModel.updateNote(note).observe(DetailActivity.this, isSuccess -> {
+                if (isSuccess){
+                    finish();
+                } else {
+                    Toast.makeText(DetailActivity.this, R.string.update_note_failed, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private Boolean isFormValid(){
         String title = etTitle.getText().toString();
         String content = etContent.getText().toString();
-
         return !title.isEmpty() && !content.isEmpty();
     }
 
@@ -72,20 +103,23 @@ public class DetailActivity extends AppCompatActivity {
         String title = etTitle.getText().toString();
         String content = etContent.getText().toString();
         if(isFormValid()){
-            viewModel.isTitleExist(title).observe(this, new Observer<Boolean>() {
-                @Override
-                public void onChanged(Boolean isExist) {
-                    if (isExist){
-                        Toast.makeText(DetailActivity.this, R.string.title_already_exist, Toast.LENGTH_SHORT).show();
-                    } else {
-                        viewModel.insertNote(new Note(getUsernamePref(), title, content)).observe(DetailActivity.this, isSuccess -> {
-                            if (isSuccess){
-                                finish();
-                            } else {
-                                Toast.makeText(DetailActivity.this, R.string.failed_to_insert_note, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
+            viewModel.isTitleExist(title).observe(this, isExist -> {
+                if (isExist){
+                    Toast.makeText(DetailActivity.this, R.string.title_already_exist, Toast.LENGTH_SHORT).show();
+                } else {
+                    Note note = new Note(
+                            null,
+                            getUsernamePref(),
+                            title,
+                            content
+                    );
+                    viewModel.insertNote(note).observe(DetailActivity.this, isSuccess -> {
+                        if (isSuccess){
+                            finish();
+                        } else {
+                            Toast.makeText(DetailActivity.this, R.string.failed_to_insert_note, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             });
         } else {

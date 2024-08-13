@@ -30,4 +30,6 @@
     <string name="profile">Profil</string>
     <string name="title_already_exist">Judul sudah digunakan</string>
     <string name="failed_to_insert_note">Gagal menyimpan catatan</string>
+    <string name="edit_notes">Ubah catatan</string>
+    <string name="update_note_failed">Gagal simpan perubahan</string>
 </resources>

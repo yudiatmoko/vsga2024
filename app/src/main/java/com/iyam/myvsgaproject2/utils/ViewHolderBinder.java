@@ -1,0 +1,1 @@
+/* *    Hi, Code Enthusiast! *    https://github.com/yudiatmoko *//* *    Hi, Code Enthusiast! *    https://github.com/yudiatmoko */package com.iyam.myvsgaproject2.utils;public interface ViewHolderBinder<T> {    void bind(T item);}

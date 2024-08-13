@@ -14,31 +14,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
-import androidx.core.splashscreen.SplashScreen;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.iyam.myvsgaproject2.R;
 import com.iyam.myvsgaproject2.data.preferences.Preferences;
 import com.iyam.myvsgaproject2.databinding.ActivityMainBinding;
+import com.iyam.myvsgaproject2.model.Note;
 import com.iyam.myvsgaproject2.ui.detail.DetailActivity;
+import com.iyam.myvsgaproject2.ui.main.note.NoteAdapter;
 import com.iyam.myvsgaproject2.ui.profile.ProfileActivity;
+import com.iyam.myvsgaproject2.ui.viewmodel.NoteViewModel;
+import com.iyam.myvsgaproject2.utils.TextExtension;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private FloatingActionButton fab;
     private RecyclerView rvNotes;
+    private NoteAdapter noteAdapter;
+    private NoteViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         );
         fab = binding.fab;
         rvNotes = binding.rvNotes;
+        viewModel = new ViewModelProvider(this).get(NoteViewModel.class);
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -58,16 +65,36 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        getUserPreferences();
+        setNoteList();
+        observeNotes();
         setOnClickListener();
     }
 
-    private void setOnClickListener() {
-        fab.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, DetailActivity.class)));
+    private void observeNotes() {
+        viewModel.noteList(Preferences.getLoggedInUser(this))
+                .observe(this, noteList -> noteAdapter.setNotes(noteList));
     }
 
-    private void getUserPreferences() {
+    private void setNoteList() {
+        noteAdapter = new NoteAdapter();
+        rvNotes.setLayoutManager(new LinearLayoutManager(this));
+        rvNotes.setAdapter(noteAdapter);
+    }
 
+    private void setOnClickListener() {
+        fab.setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, DetailActivity.class)));
+        noteAdapter.setOnItemClickListener((NoteAdapter.OnDeleteItemClickListener) note ->
+                viewModel.deleteNote(note).observe(MainActivity.this, isSuccess -> {
+            if (isSuccess){
+                observeNotes();
+            }
+        }));
+        noteAdapter.setOnItemClickListener((NoteAdapter.OnEditItemClickListener) note -> {
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra(TextExtension.NOTE, note);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -82,5 +109,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, ProfileActivity.class));
         }
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        observeNotes();
     }
 }
