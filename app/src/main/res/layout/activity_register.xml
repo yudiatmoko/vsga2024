@@ -31,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_btn_background"
         android:backgroundTint="@color/Crayola"
         android:fontFamily="@font/nunito_sans_bold"
         android:text="@string/register"

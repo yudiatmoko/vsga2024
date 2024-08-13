@@ -63,10 +63,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="4dp"
+        android:background="@drawable/rounded_btn_background"
         android:backgroundTint="@color/Crayola"
         android:fontFamily="@font/nunito_sans_bold"
         android:text="@string/action_save"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <Button
@@ -74,10 +76,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="4dp"
+        android:background="@drawable/rounded_btn_background"
         android:backgroundTint="@color/Crayola"
         android:fontFamily="@font/nunito_sans_bold"
         android:text="@string/action_save_changes"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:visibility="gone" />
 

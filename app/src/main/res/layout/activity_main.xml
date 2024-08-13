@@ -26,6 +26,7 @@
         android:backgroundTint="@color/Crayola"
         android:clickable="true"
         android:focusable="true"
+        android:foregroundTint="@color/white"
         android:src="@drawable/rounded_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
