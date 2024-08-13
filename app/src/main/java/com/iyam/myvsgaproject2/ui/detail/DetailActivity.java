@@ -59,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.edit_notes);
-            Note note = (Note) getIntent().getSerializableExtra("NOTE");
+            Note note = (Note) getIntent().getSerializableExtra(TextExtension.NOTE);
             etTitle.setText(note.getNoteTitle());
             etContent.setText(note.getNoteContent());
             btnSave.setVisibility(View.GONE);
@@ -103,23 +103,17 @@ public class DetailActivity extends AppCompatActivity {
         String title = etTitle.getText().toString();
         String content = etContent.getText().toString();
         if(isFormValid()){
-            viewModel.isTitleExist(title).observe(this, isExist -> {
-                if (isExist){
-                    Toast.makeText(DetailActivity.this, R.string.title_already_exist, Toast.LENGTH_SHORT).show();
+            Note note = new Note(
+                    null,
+                    getUsernamePref(),
+                    title,
+                    content
+            );
+            viewModel.insertNote(note).observe(DetailActivity.this, isSuccess -> {
+                if (isSuccess){
+                    finish();
                 } else {
-                    Note note = new Note(
-                            null,
-                            getUsernamePref(),
-                            title,
-                            content
-                    );
-                    viewModel.insertNote(note).observe(DetailActivity.this, isSuccess -> {
-                        if (isSuccess){
-                            finish();
-                        } else {
-                            Toast.makeText(DetailActivity.this, R.string.failed_to_insert_note, Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    Toast.makeText(DetailActivity.this, R.string.failed_to_insert_note, Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
