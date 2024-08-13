@@ -28,4 +28,6 @@
     <string name="action_save_changes">Simpan perubahan</string>
     <string name="new_note">Catatan Baru</string>
     <string name="profile">Profil</string>
+    <string name="title_already_exist">Judul sudah digunakan</string>
+    <string name="failed_to_insert_note">Gagal menyimpan catatan</string>
 </resources>
