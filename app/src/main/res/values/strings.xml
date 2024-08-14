@@ -32,4 +32,6 @@
     <string name="failed_to_insert_note">Gagal menyimpan catatan</string>
     <string name="edit_notes">Ubah catatan</string>
     <string name="update_note_failed">Gagal simpan perubahan</string>
+    <string name="logout">Logout</string>
+    <string name="update_profile_successed">Update profil berhasil</string>
 </resources>

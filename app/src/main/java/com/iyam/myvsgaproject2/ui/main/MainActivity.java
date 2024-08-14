@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         setNoteList();
         observeNotes();
         setOnClickListener();
+        observeUserPref();
+    }
+
+    private void observeUserPref() {
+        boolean status = Preferences.getLoggedInStatus(this);
+        if (!status){
+            finish();
+        }
     }
 
     private void observeNotes() {

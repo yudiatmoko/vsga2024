@@ -92,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (isExist){
                     binding.formRegister.tilUsername.setError(getString(R.string.username_already_exists));
                 } else {
-                    viewModel.register(new User(name, userEmail, username, userPassword)
+                    viewModel.register(new User(null, name, username, userEmail, userPassword)
                     ).observe(RegisterActivity.this, isSuccess -> {
                         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                         Preferences.setLoggedInUser(getBaseContext(), username);
