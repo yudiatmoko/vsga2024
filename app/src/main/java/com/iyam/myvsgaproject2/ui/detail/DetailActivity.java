@@ -1,6 +1,9 @@
 package com.iyam.myvsgaproject2.ui.detail;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -29,6 +33,8 @@ public class DetailActivity extends AppCompatActivity {
     private Button btnSave, btnUpdate;
     private EditText etTitle, etContent;
     private NoteViewModel viewModel;
+    private String oldContent = "";
+    private String oldTitle = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,12 @@ public class DetailActivity extends AppCompatActivity {
         btnUpdate = binding.btnUpdate;
         etTitle = binding.etNoteTitle;
         etContent = binding.etContent;
+
         viewModel = new ViewModelProvider(this).get(NoteViewModel.class);
+
+        Typeface customFont = ResourcesCompat.getFont(this, R.font.nunito_sans_medium);
+        etTitle.setTypeface(customFont);
+        etContent.setTypeface(customFont);
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -59,12 +70,57 @@ public class DetailActivity extends AppCompatActivity {
     private void setContentForEdit() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.edit_notes);
+            Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.detail_notes);
             Note note = (Note) getIntent().getSerializableExtra(TextExtension.NOTE);
             etTitle.setText(note.getNoteTitle());
             etContent.setText(note.getNoteContent());
+            oldContent = note.getNoteContent();
+            oldTitle = note.getNoteTitle();
             btnSave.setVisibility(View.GONE);
-            btnUpdate.setVisibility(View.VISIBLE);
+
+            etTitle.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    String currentTitle = charSequence.toString();
+                    if (currentTitle.equalsIgnoreCase(oldTitle)){
+                        btnUpdate.setVisibility(View.GONE);
+                    } else {
+                        btnUpdate.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
+
+            etContent.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    String currentContent = charSequence.toString();
+                    if (currentContent.equalsIgnoreCase(oldContent)) {
+                        btnUpdate.setVisibility(View.GONE);
+                    } else {
+                        btnUpdate.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
         }
     }
 

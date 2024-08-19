@@ -55,4 +55,10 @@
         <item name="android:fontFamily">@font/nunito_sans_medium</item>
     </style>
 
+    <style name="TextAppearance.Material3.ActionBar.Title" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/nunito_sans_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/Crayola</item>
+    </style>
+
 </resources>
